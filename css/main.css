@@ -3,9 +3,6 @@ html, body {
     padding: 0;
 }
 
-p, button {
-    font-size: 50px;
-}
 
 .bigfont {
     font-size: 20px;
@@ -15,18 +12,29 @@ body {
     margin: 40px;
 }
 
-.wrapper {
+.grid {
     display: grid;
-    grid-template-columns: 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px;
     grid-gap: 10px;
-    background-color: #fff;
+    background-color: #ffffff;
     color: #444;
 }
 
 .box {
-    background-color: #444;
+    background-color: #BCBCBC;
     color: #fff;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
     border-radius: 5px;
-    padding: 20px;
-    font-size: 150%;
+    text-align: center;
+}
+
+p {
+    padding: 20px 0px;
+    margin: 0px 0px;
+    font-family: Roboto;
+    font-size: 50px;
 }
