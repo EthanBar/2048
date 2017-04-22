@@ -8,7 +8,7 @@ for (var tX = 0; tX < grid.length; tX++) {
     }
 }
 
-addTiles(2);
+addTiles(1);
 
 
 
