@@ -1,7 +1,15 @@
 "use strict";
+var gameOver = false;
+
 function addTiles(count) {
     if (checkFull()) {
-        $(".score").text("Game Over");
+        if (!gameOver) {
+            gameOver = true;
+            var scorey = $(".score");
+            scorey.hide();
+            scorey.text("Game Over<br>Score: " + getScore());
+            scorey.slideDown("1000");
+        }
         return;
     }
     for (var i = 0; i < count; i++) {
@@ -11,6 +19,9 @@ function addTiles(count) {
         } while (grid[randX][randY].hasValue());
         grid[randX][randY].points = 2;
     }
+    var selector = $(".b" + String(randX) + String(randY));
+    selector.parent().hide();
+    selector.parent().fadeIn(300);
 }
 
 function checkFull() {
@@ -27,75 +38,77 @@ function checkFull() {
 
 function moveTiles(key) {
     var tX, tY, counter;
-    switch (key) {
-        case 3: // Up
-            for (tX = 0; tX < grid.length; tX++) {
-                for (tY = 0; tY < grid.length; tY++) {
-                    counter = tY;
-                    while (counter > 0) {
-                        if (!(grid[tX][counter - 1].hasValue())) { // Move up
-                            grid[tX][counter - 1].points = grid[tX][counter].points;
-                            grid[tX][counter].points = 0;
-                        } else if (grid[tX][counter].hasValue() && (grid[tX][counter - 1].points === grid[tX][counter].points)) { // Combine
-                            grid[tX][counter - 1].points = grid[tX][counter].points * 2;
-                            grid[tX][counter].points = 0;
-                        }
-                        counter--;
-                    }
-                }
-            }
-            break;
-        case 1: // Down
-            for (tX = 0; tX < grid.length; tX++) {
-                for (tY = grid.length - 1; tY >= 0; tY--) {
-                    counter = tY;
-                    while (counter < grid.length - 1) {
-                        if (!(grid[tX][counter + 1].hasValue())) { // Move down
-                            grid[tX][counter + 1].points = grid[tX][counter].points;
-                            grid[tX][counter].points = 0;
-                        } else if (grid[tX][counter].hasValue() && (grid[tX][counter + 1].points === grid[tX][counter].points)) { // Combine
-                            grid[tX][counter + 1].points = grid[tX][counter].points * 2;
-                            grid[tX][counter].points = 0;
-                        }
-                        counter++;
-                    }
-                }
-            }
-            break;
-        case 2: // Right
-            for (tY = 0; tY < grid.length; tY++) {
-                for (tX = grid.length - 1; tX >= 0; tX--) {
-                    counter = tX;
-                    while (counter < grid.length - 1) {
-                        if (!(grid[counter + 1][tY].hasValue())) { // Move up
-                            grid[counter + 1][tY].points = grid[counter][tY].points;
-                            grid[counter][tY].points = 0;
-                        } else if (grid[counter][tY].hasValue() && (grid[counter + 1][tY].points === grid[counter][tY].points)) { // Combine
-                            grid[counter + 1][tY].points = grid[counter][tY].points * 2;
-                            grid[counter][tY].points = 0;
-                        }
-                        counter++;
-                    }
-                }
-            }
-            break;
-        case 4: // Left
-            for (tY = 0; tY < grid.length; tY++) {
+    for (var repeat = 0; repeat < 2; repeat++) {
+        switch (key) {
+            case 3: // Up
                 for (tX = 0; tX < grid.length; tX++) {
-                    counter = tX;
-                    while (counter > 0) {
-                        if (!(grid[counter - 1][tY].hasValue())) { // Move up
-                            grid[counter - 1][tY].points = grid[counter][tY].points;
-                            grid[counter][tY].points = 0;
-                        } else if (grid[counter][tY].hasValue() && (grid[counter - 1][tY].points === grid[counter][tY].points)) { // Combine
-                            grid[counter - 1][tY].points = grid[counter][tY].points * 2;
-                            grid[counter][tY].points = 0;
+                    for (tY = 0; tY < grid.length; tY++) {
+                        counter = tY;
+                        while (counter > 0) {
+                            if (!(grid[tX][counter - 1].hasValue())) { // Move up
+                                grid[tX][counter - 1].points = grid[tX][counter].points;
+                                grid[tX][counter].points = 0;
+                            } else if (grid[tX][counter].hasValue() && (grid[tX][counter - 1].points === grid[tX][counter].points)) {
+                                grid[tX][counter - 1].points = grid[tX][counter].points * 2;
+                                grid[tX][counter].points = 0;
+                            }
+                            counter--;
                         }
-                        counter--;
                     }
                 }
-            }
-            break;
+                break;
+            case 1: // Down
+                for (tX = 0; tX < grid.length; tX++) {
+                    for (tY = grid.length - 1; tY >= 0; tY--) {
+                        counter = tY;
+                        while (counter < grid.length - 1) {
+                            if (!(grid[tX][counter + 1].hasValue())) { // Move down
+                                grid[tX][counter + 1].points = grid[tX][counter].points;
+                                grid[tX][counter].points = 0;
+                            } else if (grid[tX][counter].hasValue() && (grid[tX][counter + 1].points === grid[tX][counter].points)) {
+                                grid[tX][counter + 1].points = grid[tX][counter].points * 2;
+                                grid[tX][counter].points = 0;
+                            }
+                            counter++;
+                        }
+                    }
+                }
+                break;
+            case 2: // Right
+                for (tY = 0; tY < grid.length; tY++) {
+                    for (tX = grid.length - 1; tX >= 0; tX--) {
+                        counter = tX;
+                        while (counter < grid.length - 1) {
+                            if (!(grid[counter + 1][tY].hasValue())) { // Move up
+                                grid[counter + 1][tY].points = grid[counter][tY].points;
+                                grid[counter][tY].points = 0;
+                            } else if (grid[counter][tY].hasValue() && (grid[counter + 1][tY].points === grid[counter][tY].points)) {
+                                grid[counter + 1][tY].points = grid[counter][tY].points * 2;
+                                grid[counter][tY].points = 0;
+                            }
+                            counter++;
+                        }
+                    }
+                }
+                break;
+            case 4: // Left
+                for (tY = 0; tY < grid.length; tY++) {
+                    for (tX = 0; tX < grid.length; tX++) {
+                        counter = tX;
+                        while (counter > 0) {
+                            if (!(grid[counter - 1][tY].hasValue())) { // Move up
+                                grid[counter - 1][tY].points = grid[counter][tY].points;
+                                grid[counter][tY].points = 0;
+                            } else if (grid[counter][tY].hasValue() && (grid[counter - 1][tY].points === grid[counter][tY].points)) {
+                                grid[counter - 1][tY].points = grid[counter][tY].points * 2;
+                                grid[counter][tY].points = 0;
+                            }
+                            counter--;
+                        }
+                    }
+                }
+                break;
+        }
     }
     addTiles(1);
     render();
@@ -127,3 +140,13 @@ $(function(){
         firstDown = true;
     });
 });
+
+function getScore() {
+    var total = 0;
+    for (var tX = 0; tX < grid.length; tX++) {
+        for (var tY = 0; tY < 4; tY++) {
+            total += grid[tX][tY].points;
+        }
+    }
+    return total;
+}

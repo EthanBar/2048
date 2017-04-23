@@ -28,6 +28,8 @@ function render() {
                 selector.parent().css("max-width", "100px");
                 selector.parent().css("max-height", "100px");
             }
+            selector.parent().css("background-color", getColor(grid[tX][tY].points));
+            selector.css("color", getFontColor(grid[tX][tY].points));
         }
     }
 }
