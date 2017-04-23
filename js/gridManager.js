@@ -5,10 +5,11 @@ function addTiles(count) {
     if (checkFull()) {
         if (!gameOver) {
             gameOver = true;
-            var scorey = $(".score");
+            var scorey = $(".gameover");
             scorey.hide();
-            scorey.text("Game Over<br>Score: " + getScore());
-            scorey.slideDown("1000");
+            scorey.text("Game over");
+            $(".grid").fadeTo(1000, 0.3);
+            scorey.slideDown(1000);
         }
         return;
     }
@@ -17,7 +18,11 @@ function addTiles(count) {
             var randX = Math.floor(Math.random() * grid.length);
             var randY = Math.floor(Math.random() * grid[randX].length);
         } while (grid[randX][randY].hasValue());
-        grid[randX][randY].points = 2;
+        if (Math.random() > 0.7) {
+            grid[randX][randY].points = 4;
+        } else {
+            grid[randX][randY].points = 2;
+        }
     }
     var selector = $(".b" + String(randX) + String(randY));
     selector.parent().hide();

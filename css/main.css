@@ -19,8 +19,11 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px;
-    grid-template-rows: 100px 100px 100px 100px;
+    /*!*position: relative;*!*/
+    /*!*left: 50%;*!*/
+    /*align-content: center;*/
+    grid-template-columns: 125px 125px 125px 125px;
+    grid-template-rows: 125px 125px 125px 125px;
     grid-gap: 10px;
     background-color: #ffffff;
     color: #444;
@@ -29,10 +32,10 @@ body {
 .box {
     background-color: #BCBCBC;
     color: #fff;
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    width: 125px;
+    height: 125px;
+    max-width: 125px;
+    max-height: 125px;
     border-style: solid;
     border-color: #000000;
     border-radius: 5px;
@@ -40,10 +43,49 @@ body {
 }
 
 p {
-    padding: 16px 0;
+    padding: 25px 0;
     margin: 0 0;
     font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
     font-weight: bold;
     color: black;
-    font-size: 55px;
+    font-size: 60px;
+}
+
+h1, h2 {
+    font-family: Roboto, sans-serif;
+    font-size: 35px;
+}
+
+h2 {
+    font-style: italic;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+}
+
+h1 {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-align: center;
+}
+
+.score {
+    font-size: 30px;
+    text-align: right;
+    display: inline;
+    left: 240px;
+    position: relative;
+    /*bottom: 350px;*/
+    /*left: 340px;*/
+}
+
+.center {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.gameover {
+    text-align: center;
 }
