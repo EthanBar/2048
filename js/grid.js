@@ -29,6 +29,11 @@ function render() {
             }
             selector.parent().css("background-color", getColor(grid[tX][tY].points));
             selector.css("color", getFontColor(grid[tX][tY].points));
+            if (grid[tX][tY].points > 10) {
+                selector.parent().css("box-shadow", "0 0 4px 0 " + getColor(grid[tX][tY].points) + ", 0 0 4px 0 " + getColor(grid[tX][tY].points));
+            } else {
+                selector.parent().css("box-shadow", "");
+            }
         }
     }
     $(".score").text("Score: " + getScore());
