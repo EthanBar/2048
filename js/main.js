@@ -44,6 +44,7 @@ var database = firebase.database().ref("hey");
 var provider = new firebase.auth.GoogleAuthProvider();
 var user;
 var highScore;
+var name, email, photoUrl, uid, emailVerified;
 
 function logedin() {
     firebase.database().ref('Highscore/' + user.uid).once('value').then(function(snapshot) {
@@ -51,13 +52,26 @@ function logedin() {
         highScore = snapshot.child("score").val();
         $(".highscore").text("Personal highscore: " + highScore);
     });
+    $("body").prepend('<img class="profilepic" alt="loading" height="60" width="60" src='+ photoUrl +'>');
 }
 firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
     // The signed-in user info.
     user = result.user;
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;
     console.log("signed in");
+    user.providerData.forEach(function (profile) {
+        console.log("Sign-in provider: "+profile.providerId);
+        console.log("  Provider-specific UID: "+profile.uid);
+        name = profile.displayName;
+        console.log("  Email: "+profile.email);
+        photoUrl = profile.photoURL;
+    });
     logedin();
     // ...
 }).catch(function(error) {
