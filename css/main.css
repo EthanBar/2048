@@ -89,3 +89,8 @@ h1 {
 .gameover {
     text-align: center;
 }
+
+.highscore {
+    font-size: 20px;
+    text-align: center;
+}
