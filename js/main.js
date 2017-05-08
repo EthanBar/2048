@@ -43,11 +43,13 @@ firebase.initializeApp(config);
 var database = firebase.database().ref("hey");
 var provider = new firebase.auth.GoogleAuthProvider();
 var user;
+var highScore;
+
 function logedin() {
     firebase.database().ref('Highscore/' + user.uid).once('value').then(function(snapshot) {
         console.log(snapshot);
-        var score = snapshot.child("score").val();
-        $(".highscore").text("Personal highscore: " + score);
+        highScore = snapshot.child("score").val();
+        $(".highscore").text("Personal highscore: " + highScore);
     });
 }
 firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -79,10 +81,13 @@ $(document).ready(function () {
 // });
 
 function updateScore() {
-    firebase.database().ref('Highscore/' + user.uid).set({
-        score: getScore(),
-        name: "hi"
-    });
+    if (highScore !== undefined) {
+        if (getScore() > highScore) {
+            firebase.database().ref('Highscore/' + user.uid).set({
+                score: getScore()
+            });
+        }
+    }
 }
 
 var provider = new firebase.auth.GoogleAuthProvider();
