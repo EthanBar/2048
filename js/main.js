@@ -2,8 +2,8 @@
 var disablefirebase = false;
 
 var grid = [[],[],[],[]];
-for (var tX = 0; tX < grid.length; tX++) {
-    for (var tY = 0; tY < 4; tY++) {
+for (let tX = 0; tX < grid.length; tX++) {
+    for (let tY = 0; tY < 4; tY++) {
         grid[tX][tY] = new Space(tX, tY);
     }
 }
@@ -24,7 +24,7 @@ var config = {
     messagingSenderId: "211572762521"
 };
 firebase.initializeApp(config);
-var n1, n1s, n2, n2s, n3, n3s;
+var n1, n1s, n2, n2s, n3, n3s; // Leaderboard vars
 // Get a reference to the database service
 var provider = new firebase.auth.GoogleAuthProvider();
 var user;

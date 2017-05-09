@@ -1,22 +1,26 @@
 "use strict";
-var gameOver = false;
+let gameOver = false;
 
 function addTiles(count) {
+    if (gameOver) return;
     if (checkFull()) {
-        if (!gameOver) {
-            console.log("gameover");
-            gameOver = true;
-            var scorey = $(".gameover");
-            serverRequest();
-            scorey.hide();
-            scorey.text("Game over");
-            $(".grid").fadeTo(1000, 0.3);
-            scorey.slideDown(1000);
+        if (checkGameover()) {
+            if (!gameOver) {
+                console.log("gameover");
+                gameOver = true;
+                let scorey = $(".gameover");
+                serverRequest();
+                scorey.hide();
+                scorey.text("Game over");
+                $(".grid").fadeTo(1000, 0.3);
+                scorey.slideDown(1000);
+            }
+            return;
         }
         return;
     }
 
-    for (var i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
         do {
             var randX = Math.floor(Math.random() * grid.length);
             var randY = Math.floor(Math.random() * grid[randX].length);
@@ -27,26 +31,43 @@ function addTiles(count) {
             grid[randX][randY].points = 2;
         }
     }
-    var selector = $(".b" + String(randX) + String(randY));
+    let selector = $(".b" + String(randX) + String(randY));
     selector.parent().hide();
     selector.parent().fadeIn(300);
 }
 
 function checkFull() {
-    var isFull = true;
-    for (var tX = 0; tX < grid.length; tX++) {
-        for (var tY = 0; tY < grid[tX].length; tY++) {
+    for (let tX = 0; tX < grid.length; tX++) {
+        for (let tY = 0; tY < grid[tX].length; tY++) {
             if (!grid[tX][tY].hasValue()) {
-                isFull = false;
+                return false;
             }
         }
     }
-    return isFull;
+    return true;
+}
+
+function checkGameover() {
+    for (let tX = 0; tX < grid.length; tX++) {
+        for (let tY = 1; tY < grid[tX].length; tY++) {
+            if (grid[tX][tY].points === grid[tX][tY - 1].points) {
+                return false;
+            }
+        }
+    }
+    for (let tY = 0; tY < grid.length; tY++) {
+        for (let tX = 1; tX < grid[tY].length; tX++) {
+            if (grid[tX][tY].points === grid[tX - 1][tY].points) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 function moveTiles(key) {
-    var tX, tY, counter;
-    for (var repeat = 0; repeat < 2; repeat++) {
+    let tX, tY, counter;
+    for (let repeat = 0; repeat < 2; repeat++) {
         switch (key) {
             case 3: // Up
                 for (tX = 0; tX < grid.length; tX++) {
@@ -123,13 +144,29 @@ function moveTiles(key) {
         }
     }
     addTiles(1);
+    // if (checkFull()) {
+    //     if (checkGameover()) {
+    //         if (!gameOver) {
+    //             console.log("gameover");
+    //             gameOver = true;
+    //             let scorey = $(".gameover");
+    //             serverRequest();
+    //             scorey.hide();
+    //             scorey.text("Game over");
+    //             $(".grid").fadeTo(1000, 0.3);
+    //             scorey.slideDown(1000);
+    //         }
+    //         return;
+    //     }
+    //     return;
+    // }
     render();
 }
 
 // Key press detection
 $(function(){
-    var html = $('html');
-    var firstDown = true;
+    let html = $('html');
+    let firstDown = true;
     html.keydown(function(e){
         if (firstDown) {
             if (e.which === 37) {
@@ -154,9 +191,9 @@ $(function(){
 });
 
 function getScore() {
-    var total = 0;
-    for (var tX = 0; tX < grid.length; tX++) {
-        for (var tY = 0; tY < 4; tY++) {
+    let total = 0;
+    for (let tX = 0; tX < grid.length; tX++) {
+        for (let tY = 0; tY < 4; tY++) {
             total += grid[tX][tY].points;
         }
     }
