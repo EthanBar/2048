@@ -57,6 +57,7 @@ function moveTiles(key) {
                                 grid[tX][counter - 1].points = grid[tX][counter].points;
                                 grid[tX][counter].points = 0;
                             } else if (grid[tX][counter].hasValue() && (grid[tX][counter - 1].points === grid[tX][counter].points)) {
+                                score += grid[counter][tY].points * 2;
                                 grid[tX][counter - 1].points = grid[tX][counter].points * 2;
                                 grid[tX][counter].points = 0;
                             }
@@ -74,6 +75,7 @@ function moveTiles(key) {
                                 grid[tX][counter + 1].points = grid[tX][counter].points;
                                 grid[tX][counter].points = 0;
                             } else if (grid[tX][counter].hasValue() && (grid[tX][counter + 1].points === grid[tX][counter].points)) {
+                                score += grid[counter][tY].points * 2;
                                 grid[tX][counter + 1].points = grid[tX][counter].points * 2;
                                 grid[tX][counter].points = 0;
                             }
@@ -91,6 +93,7 @@ function moveTiles(key) {
                                 grid[counter + 1][tY].points = grid[counter][tY].points;
                                 grid[counter][tY].points = 0;
                             } else if (grid[counter][tY].hasValue() && (grid[counter + 1][tY].points === grid[counter][tY].points)) {
+                                score += grid[counter][tY].points * 2;
                                 grid[counter + 1][tY].points = grid[counter][tY].points * 2;
                                 grid[counter][tY].points = 0;
                             }
@@ -108,6 +111,7 @@ function moveTiles(key) {
                                 grid[counter - 1][tY].points = grid[counter][tY].points;
                                 grid[counter][tY].points = 0;
                             } else if (grid[counter][tY].hasValue() && (grid[counter - 1][tY].points === grid[counter][tY].points)) {
+                                score += grid[counter][tY].points * 2;
                                 grid[counter - 1][tY].points = grid[counter][tY].points * 2;
                                 grid[counter][tY].points = 0;
                             }

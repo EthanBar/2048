@@ -1,47 +1,73 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>2048</title>
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <title>2048</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png" href="res/favicon16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="res/favicon32.png" sizes="32x32">
+</head>
+<body>
 
-    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-    <script>
-    </script>
-        <script src="js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="js/colors.js"></script>
-        <script src="js/grid.js"></script>
-        <script src="js/gridManager.js"></script>
-        <script src="js/main.js"></script>
-        <img style="display: block" src="">
-        <h1>2048</h1>
-        <div class="center">
-            <div class="topbar">
-                <h2>By Ethan Barker</h2>
-                <p class="score"></p>
-            </div>
-            <div class="grid">
-                <div class="box"><p class="txt b00"></p></div>
-                <div class="box"><p class="txt b10"></p></div>
-                <div class="box"><p class="txt b20"></p></div>
-                <div class="box"><p class="txt b30"></p></div>
-                <div class="box"><p class="txt b01"></p></div>
-                <div class="box"><p class="txt b11"></p></div>
-                <div class="box"><p class="txt b21"></p></div>
-                <div class="box"><p class="txt b31"></p></div>
-                <div class="box"><p class="txt b02"></p></div>
-                <div class="box"><p class="txt b12"></p></div>
-                <div class="box"><p class="txt b22"></p></div>
-                <div class="box"><p class="txt b32"></p></div>
-                <div class="box"><p class="txt b03"></p></div>
-                <div class="box"><p class="txt b13"></p></div>
-                <div class="box"><p class="txt b23"></p></div>
-                <div class="box"><p class="txt b33"></p></div>
-            </div>
-            <p class="highscore">Sign in to get your highscore</p>
-            <p class="gameover"></p>
-        </div>
-    </body>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script src="js/vendor/jquery-1.12.0.min.js"></script>
+<script src="js/colors.js"></script>
+<script src="js/grid.js"></script>
+<script src="js/gridManager.js"></script>
+<script src="js/main.js"></script>
+
+
+<img style="display: block" src="">
+<div class="rightbar">
+    <table style="width:120%">
+        <tr>
+            <th>Place</th>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        <tr>
+            <td>1st</td>
+            <td class="n1"></td>
+            <td class="n1s"></td>
+        </tr>
+        <tr>
+            <td>2nd</td>
+            <td class="n2"></td>
+            <td class="n2s"></td>
+        </tr>
+        <tr>
+            <td>3rd</td>
+            <td class="n3"></td>
+            <td class="n3s"></td>
+        </tr>
+    </table>
+</div>
+<div class="center">
+    <h1>2048</h1>
+    <div class="topbar">
+        <h2>By Ethan Barker</h2>
+        <p class="score"></p>
+    </div>
+    <div class="grid">
+        <div class="box"><p class="txt b00"></p></div>
+        <div class="box"><p class="txt b10"></p></div>
+        <div class="box"><p class="txt b20"></p></div>
+        <div class="box"><p class="txt b30"></p></div>
+        <div class="box"><p class="txt b01"></p></div>
+        <div class="box"><p class="txt b11"></p></div>
+        <div class="box"><p class="txt b21"></p></div>
+        <div class="box"><p class="txt b31"></p></div>
+        <div class="box"><p class="txt b02"></p></div>
+        <div class="box"><p class="txt b12"></p></div>
+        <div class="box"><p class="txt b22"></p></div>
+        <div class="box"><p class="txt b32"></p></div>
+        <div class="box"><p class="txt b03"></p></div>
+        <div class="box"><p class="txt b13"></p></div>
+        <div class="box"><p class="txt b23"></p></div>
+        <div class="box"><p class="txt b33"></p></div>
+    </div>
+    <p class="highscore">Sign in to get your highscore</p>
+    <p class="gameover"></p>
+</div>
+</body>
 </html>
