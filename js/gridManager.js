@@ -7,7 +7,7 @@ function addTiles(count) {
             console.log("gameover");
             gameOver = true;
             var scorey = $(".gameover");
-            updateScore();
+            serverRequest();
             scorey.hide();
             scorey.text("Game over");
             $(".grid").fadeTo(1000, 0.3);
@@ -15,14 +15,7 @@ function addTiles(count) {
         }
         return;
     }
-    // var emptyTiles = [];
-    // for (var tX = 0; tX < grid.length; tX++) {
-    //     for (var tY = 0; tY < grid.length; tY++) {
-    //         if (!grid[tX][tY].hasValue()) {
-    //             emptyTiles.append()
-    //         }
-    //     }
-    // }
+
     for (var i = 0; i < count; i++) {
         do {
             var randX = Math.floor(Math.random() * grid.length);
