@@ -57,6 +57,8 @@ function logedin() {
     });
     $("body").prepend('<p class="username">' + name + '</p>');
     $("body").prepend('<img class="profilepic" alt="loading" height="60" width="60" src='+ photoUrl +'>');
+    $(".profilepic").hide().fadeIn(600);
+    $(".username").hide().slideDown(600);
 }
 firebase.auth().signInWithPopup(provider).then(function(result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
