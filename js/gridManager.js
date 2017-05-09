@@ -163,5 +163,8 @@ function getScore() {
             total += grid[tX][tY].points;
         }
     }
+    if (user && total > highScore) {
+        $(".highscore").text("Personal highscore: " + total);
+    }
     return total;
 }

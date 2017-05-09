@@ -94,3 +94,21 @@ h1 {
     font-size: 20px;
     text-align: center;
 }
+
+.profilepic {
+    display: inline-block;
+    background-color: whitesmoke;
+    position: absolute;
+    padding: 8px;
+    left: 20px;
+    top: 20px;
+}
+
+.username {
+    padding-left: 10px;
+    font-size: 20px;
+    left: 100px;
+    top: 23px;
+    position: absolute;
+    display: inline-block;
+}

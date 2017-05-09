@@ -45,13 +45,17 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var user;
 var highScore;
 var name, email, photoUrl, uid, emailVerified;
-
 function logedin() {
     firebase.database().ref('Highscore/' + user.uid).once('value').then(function(snapshot) {
         console.log(snapshot);
         highScore = snapshot.child("score").val();
-        $(".highscore").text("Personal highscore: " + highScore);
+        if (highScore !== null) {
+            $(".highscore").text("Personal highscore: " + highScore);
+        } else {
+            $(".highscore").text("Finish a game to set a high score.");
+        }
     });
+    $("body").prepend('<p class="username">' + name + '</p>');
     $("body").prepend('<img class="profilepic" alt="loading" height="60" width="60" src='+ photoUrl +'>');
 }
 firebase.auth().signInWithPopup(provider).then(function(result) {
