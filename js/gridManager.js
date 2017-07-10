@@ -34,6 +34,20 @@ function addTiles(count) {
     let selector = $(".b" + String(randX) + String(randY));
     selector.parent().hide();
     selector.parent().fadeIn(300);
+    if (checkFull()) {
+        if (checkGameover()) {
+            if (!gameOver) {
+                console.log("gameover");
+                gameOver = true;
+                let scorey = $(".gameover");
+                serverRequest();
+                scorey.hide();
+                scorey.text("Game over");
+                $(".grid").fadeTo(1000, 0.3);
+                scorey.slideDown(1000);
+            }
+        }
+    }
 }
 
 function checkFull() {
@@ -144,22 +158,6 @@ function moveTiles(key) {
         }
     }
     addTiles(1);
-    // if (checkFull()) {
-    //     if (checkGameover()) {
-    //         if (!gameOver) {
-    //             console.log("gameover");
-    //             gameOver = true;
-    //             let scorey = $(".gameover");
-    //             serverRequest();
-    //             scorey.hide();
-    //             scorey.text("Game over");
-    //             $(".grid").fadeTo(1000, 0.3);
-    //             scorey.slideDown(1000);
-    //         }
-    //         return;
-    //     }
-    //     return;
-    // }
     render();
 }
 
